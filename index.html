@@ -18,7 +18,7 @@
             height: 100vh;
         }
         h1 {
-            font-size: 2.5em;
+            font-size: 2.2em;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
         }
         button {
@@ -66,9 +66,6 @@
     <h1 id="question">Will you be my Valentine? 💘</h1>
     <button id="yes-btn" onclick="yesClicked()">Yes</button>
     <button id="no-btn" onclick="noClicked()">No</button>
-    <div id="image-container" class="hidden">
-        <img id="sad-image" src="" alt="Sad Image">
-    </div>
 
     <script>
         let noClickCount = 0;
@@ -76,18 +73,16 @@
         let sadEmojis = ["💔", "😞", "😢", "😭", "🥺", "😖"];
         let happyEmojis = ["😊", "😍", "🥰", "💖", "😄", "💘"];
         let sadMessages = [
-            "Sure KA? 💔", 
-            "Preety Pleasee... 😭", 
-            "Awa na.... 😢", 
-            "Oiiiiiiiiii? 💔", 
+            "Are you absolutely sure? 💔", 
+            "That hurts... 😭", 
+            "I thought we had something special 😢", 
+            "Why do you break my heart like this? 💔", 
             "One last chance... 🥺"
         ];
         let yesMessages = [
-            "<span style='font-size: 2.5em; font-weight: bold;'>ALA KAWAWA WALANG KA VALENTINE WHAHAHAHA <span class='rotate'> 😂😂😂</span></span>",
-            "<span style='font-size: 2.5em; font-weight: bold;'>ALA KAWAWA WALANG KA VALENTINE <span class='rotate'> 🤣🤣🤣</span></span>",
-            "<span style='font-size: 2.5em; font-weight: bold;'>ALA KAWAWA WALANG KA VALENTINE <span class='rotate'> 😂😂😂</span></span>",
-            "<span style='font-size: 2.5em; font-weight: bold;'>ALA KAWAWA WALANG KA VALENTINE <span class='rotate'> 🤣🤣🤣</span></span>",
-            "<span style='font-size: 2.5em; font-weight: bold;'>ALA KAWAWA WALANG KA VALENTINE <span class='rotate'> 😂😂😂</span></span>"
+            "Sure kaba tin tin 🥰", 
+            "Talaga baaaaa😭", 
+            "<span style='font-size: 1.0em; font-weight: bold;'>ALA KAWAWA WALANG KA VALENTINE WHAHAHAHA <span class='rotate'> 😂😂😂</span></span>"
         ];
 
         function noClicked() {
@@ -100,7 +95,7 @@
             document.getElementById("no-btn").style.fontSize = `${14 + noClickCount * 5}px`;
             if (noClickCount > 5) {
                 document.getElementById("no-btn").style.display = "none";
-                document.getElementById("question").innerHTML = "okiiii cge 😭💔";
+                document.getElementById("question").innerHTML = "Fine, I’ll stop asking... 💔";
             }
         }
 
@@ -108,6 +103,8 @@
             yesClickCount++;
             if (yesClickCount < yesMessages.length) {
                 document.getElementById("question").innerHTML = yesMessages[yesClickCount - 1];
+            } else {
+                document.getElementById("question").innerHTML = yesMessages[yesMessages.length - 1];
                 document.getElementById("yes-btn").style.display = "none";
                 document.getElementById("no-btn").style.display = "none";
             }
