@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Special</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            color: white;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        h1 {
+            font-size: 2.5em;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        button {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        #yes-btn {
+            background-color: #4CAF50;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        #no-btn {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        .hidden {
+            display: none;
+        }
+        img {
+            width: 150px;
+            height: 150px;
+        }
+        .rotate {
+            display: inline-block;
+            animation: rotateLaugh 1s infinite linear;
+        }
+        @keyframes rotateLaugh {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <h1 id="question">Will you be my Valentine? 💘</h1>
+    <button id="yes-btn" onclick="yesClicked()">Yes</button>
+    <button id="no-btn" onclick="noClicked()">No</button>
+    <div id="image-container" class="hidden">
+        <img id="sad-image" src="" alt="Sad Image">
+    </div>
+
+    <script>
+        let noClickCount = 0;
+        let yesClickCount = 0;
+        let sadEmojis = ["💔", "😞", "😢", "😭", "🥺", "😖"];
+        let happyEmojis = ["😊", "😍", "🥰", "💖", "😄", "💘"];
+        let sadMessages = [
+            "Sure KA? 💔", 
+            "Preety Pleasee... 😭", 
+            "Awa na.... 😢", 
+            "Oiiiiiiiiii? 💔", 
+            "One last chance... 🥺"
+        ];
+        let yesMessages = [
+            "<span style='font-size: 2.5em; font-weight: bold;'>ALA KAWAWA WALANG KA VALENTINE WHAHAHAHA <span class='rotate'> 😂😂😂</span></span>",
+            "<span style='font-size: 2.5em; font-weight: bold;'>ALA KAWAWA WALANG KA VALENTINE <span class='rotate'> 🤣🤣🤣</span></span>",
+            "<span style='font-size: 2.5em; font-weight: bold;'>ALA KAWAWA WALANG KA VALENTINE <span class='rotate'> 😂😂😂</span></span>",
+            "<span style='font-size: 2.5em; font-weight: bold;'>ALA KAWAWA WALANG KA VALENTINE <span class='rotate'> 🤣🤣🤣</span></span>",
+            "<span style='font-size: 2.5em; font-weight: bold;'>ALA KAWAWA WALANG KA VALENTINE <span class='rotate'> 😂😂😂</span></span>"
+        ];
+
+        function noClicked() {
+            noClickCount++;
+            document.getElementById("question").innerHTML = sadMessages[Math.min(noClickCount, sadMessages.length - 1)] + " " + sadEmojis[Math.floor(Math.random() * sadEmojis.length)];
+            let yesBtn = document.getElementById("yes-btn");
+            yesBtn.style.fontSize = `${14 + noClickCount * 100}px`;
+            yesBtn.style.width = `${200 + noClickCount * 100}px`;
+            yesBtn.style.height = `${100 + noClickCount * 80}px`;
+            document.getElementById("no-btn").style.fontSize = `${14 + noClickCount * 5}px`;
+            if (noClickCount > 5) {
+                document.getElementById("no-btn").style.display = "none";
+                document.getElementById("question").innerHTML = "okiiii cge 😭💔";
+            }
+        }
+
+        function yesClicked() {
+            yesClickCount++;
+            if (yesClickCount < yesMessages.length) {
+                document.getElementById("question").innerHTML = yesMessages[yesClickCount - 1];
+                document.getElementById("yes-btn").style.display = "none";
+                document.getElementById("no-btn").style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
